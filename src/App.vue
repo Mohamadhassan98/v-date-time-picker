@@ -35,6 +35,7 @@
           v-model="value"
           :modal="timeIsModal"
           :showModal.sync="timeShowModal"
+          :max-hours="148"
         />
         <button @click="timeIsModal = !timeIsModal">modal</button>
         <button v-show="timeIsModal" @click="timeShowModal = true">
@@ -54,7 +55,7 @@ import VTimePicker from "./components/VTimePicker.vue";
 
 export default Vue.extend({
   data: () => ({
-    value: new Date(),
+    value: "",
     isModal: false,
     showModal: false,
     jalaliIsModal: false,
@@ -63,6 +64,11 @@ export default Vue.extend({
     timeShowModal: false,
   }),
   components: { VDatePicker, VTimePicker },
+  watch: {
+    value(val) {
+      console.log(val);
+    },
+  },
 });
 </script>
 

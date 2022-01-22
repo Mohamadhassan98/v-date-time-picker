@@ -45,7 +45,7 @@ import PickerContainer from "./PickerContainer.vue";
 import VWheelSelect from "./VWheelSelect.vue";
 
 // types
-import { Option } from "../types";
+import { Option } from "@/types";
 
 export default Vue.extend({
   name: "VTimePicker",
@@ -91,6 +91,10 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    maxHours: {
+      type: Number,
+      default: 24,
+    },
   },
   beforeMount() {
     if (typeof this.value === "string") {
@@ -115,7 +119,7 @@ export default Vue.extend({
     },
     hours(): Option[] {
       const options: Option[] = [];
-      for (let i = 0; i <= 23; i++) {
+      for (let i = 0; i < this.maxHours; i++) {
         options.push({
           title: `${`${i}`.length === 1 ? "0" : ""}${i}`,
           key: i,
